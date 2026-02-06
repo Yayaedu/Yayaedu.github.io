@@ -1,15 +1,23 @@
 ---
 layout: page
 title: Forside
+permalink: /
 ---
 
-# Hej 👋
-Velkommen til min studie-portfolio.
+## Navigation
+- [Blog (ugentligt)](/blog/)
+- [Projekter](/projekter/)
+- [Noter](/noter/)
+- [Eksperimenter](/eksperimenter/)
+- [Refleksioner](/refleksioner/)
+- [Læringsmål & læringsplan](/laeringsmaal/)
 
-Her dokumenterer jeg mit arbejde, refleksioner og læring gennem semestret.
+## Formål
+Her dokumenterer jeg løbende mit arbejde gennem semestret – inkl. skitser, noter, eksperimenter og færdige/ufærdige produkter.
 
-## Indhold
-- Projekter
-- Ugentlig blog
-- Noter og eksperimenter
-- Refleksioner og læringsmål
+## Seneste blogindlæg
+<ul>
+{% for post in site.posts limit:5 %}
+  <li><a href="{{ post.url }}">{{ post.title }}</a> – {{ post.date | date: "%d-%m-%Y" }}</li>
+{% endfor %}
+</ul>
