@@ -4,5 +4,13 @@ title: Blog
 permalink: /blog/
 ---
 
-# Blog (ugentligt)
-Her skriver jeg ugentligt om mit faglige arbejde og læring.
+# Blog (mindst ugentligt)
+
+<ul>
+{% for post in site.posts %}
+  <li>
+    <a href="{{ post.url }}">{{ post.title }}</a>
+    – {{ post.date | date: "%d-%m-%Y" }}
+  </li>
+{% endfor %}
+</ul>
