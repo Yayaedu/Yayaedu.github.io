@@ -1,0 +1,5 @@
+title: "Yasin – Studieportfolio"
+description: "Studieportfolio med projekter, noter, refleksioner og ugentlig blog."
+theme: minima
+plugins:
+  - jekyll-feed
