@@ -9,6 +9,10 @@ permalink: /projekter/
 
 <h2>🎮 Første Unity Spil</h2>
 
+<img src="/game1.png" 
+     alt="Unity spil screenshot" 
+     style="width:100%; max-width:600px; border-radius:10px; margin-bottom:15px;">
+
 <p><strong>Teknologi:</strong> Unity, C#</p>
 
 <p>
