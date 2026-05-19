@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yasin Yavuz – Studieportfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #767676;
+  --link: #2563a8;
+  --border: #e8e8e8;
+  --accent: #2a9d5c;
+  --tag-bg: #f0f4f8;
+  --card-bg: #fafafa;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --radius: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; font-weight: 300; }
+
+.site-header { border-bottom: 1px solid var(--border); padding: 0 2rem; position: sticky; top: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); z-index: 100; }
+.header-inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; padding: 1rem 0 0.4rem; gap: 0.5rem; }
+.site-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--text); text-decoration: none; cursor: pointer; }
+.site-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem 1.4rem; padding-bottom: 0.6rem; }
+.site-nav a { font-size: 0.88rem; color: var(--text); text-decoration: none; font-weight: 400; padding: 0.15rem 0; border-bottom: 1.5px solid transparent; transition: color 0.15s; cursor: pointer; }
+.site-nav a:hover { color: var(--link); border-bottom-color: var(--link); }
+
+.page { display: none; max-width: 780px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+.page.active { display: block; }
+
+.page-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.page-header h1 { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 400; }
+.content-section { margin-bottom: 3rem; }
+.content-section h2 { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 400; margin-bottom: 1.2rem; }
+.content-section p { max-width: 65ch; }
+
+.nav-list, .blog-list { list-style: none; padding: 0; }
+.nav-list li, .blog-list li { padding: 0.2rem 0; }
+.nav-list li::before, .blog-list li::before { content: "•"; color: var(--text-muted); margin-right: 0.6rem; }
+.nav-list a, .blog-list a { color: var(--link); text-decoration: none; cursor: pointer; }
+.nav-list a:hover, .blog-list a:hover { text-decoration: underline; }
+.dato { color: var(--text-muted); font-size: 0.9rem; }
+
+.projekt-kort, .refleksion-kort, .eksperiment-kort { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; margin-bottom: 1.2rem; }
+.projekt-kort h3, .refleksion-kort h3, .eksperiment-kort h3 { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+.laeringsmaal-kort { background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--border); border-radius: var(--radius); padding: 1.2rem; margin-bottom: 0.8rem; }
+.laeringsmaal-kort.opnaaet { border-left-color: var(--accent); }
+.laeringsmaal-kort h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; }
+
+.teknologi-tag { display: inline-block; background: var(--tag-bg); color: var(--text-muted); font-size: 0.82rem; padding: 0.2rem 0.8rem; border-radius: 20px; margin: 0.3rem 0 0.6rem; }
+.kategori-tag { display: inline-block; background: var(--tag-bg); color: var(--link); font-size: 0.78rem; font-weight: 500; padding: 0.15rem 0.6rem; border-radius: 20px; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.uge-tag { display: inline-block; background: var(--tag-bg); color: var(--link); font-size: 0.8rem; font-weight: 500; padding: 0.2rem 0.7rem; border-radius: 20px; margin-bottom: 0.6rem; }
+.status-badge { display: inline-block; font-size: 0.78rem; font-weight: 500; padding: 0.2rem 0.7rem; border-radius: 20px; margin-left: 0.5rem; }
+.badge-opnaaet { background: #d1fae5; color: #065f46; }
+.badge-igangvaerende { background: #fef3c7; color: #92400e; }
+.badge-afsluttet { background: #d1fae5; color: #065f46; }
+
+.btn-primary { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--link); color: white; text-decoration: none; padding: 0.5rem 1.1rem; border-radius: var(--radius); font-size: 0.92rem; font-weight: 500; margin-top: 0.8rem; margin-right: 0.5rem; cursor: pointer; border: none; transition: background 0.15s; }
+.btn-primary:hover { background: #1a4a80; }
+.tilbage-link { margin-top: 1.5rem; }
+.tilbage-link a { color: var(--link); text-decoration: none; cursor: pointer; font-size: 0.95rem; }
+.tilbage-breadcrumb { display: inline-block; color: var(--text-muted); text-decoration: none; font-size: 0.88rem; margin-bottom: 0.8rem; cursor: pointer; }
+
+.laeringslog-timeline { border-left: 2px solid var(--border); margin-left: 1.5rem; }
+.uge-kort { display: flex; gap: 1.5rem; padding: 0 0 2rem 2rem; position: relative; }
+.uge-kort::before { content: ""; position: absolute; left: -0.55rem; top: 0.35rem; width: 1rem; height: 1rem; border-radius: 50%; background: var(--link); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--link); }
+.uge-nummer { min-width: 4rem; font-size: 0.78rem; font-weight: 600; color: var(--link); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 0.2rem; }
+.uge-indhold { flex: 1; }
+.uge-indhold h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; }
+.sektion-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; margin-top: 0.6rem; }
+.uge-liste { list-style: none; padding: 0; }
+.uge-liste li::before { content: "-> "; color: var(--link); }
+.uge-liste li { font-size: 0.93rem; }
+.udfordring-boks { background: #fff8e6; border: 1px solid #fde68a; border-radius: var(--radius); padding: 0.6rem 0.9rem; margin-top: 0.4rem; }
+.kilde-liste-lille { list-style: none; padding: 0; }
+.kilde-liste-lille a { color: var(--link); font-size: 0.83rem; word-break: break-all; }
+
+.noter-boks { background: var(--tag-bg); border-radius: var(--radius); padding: 0.8rem 1rem; margin-top: 0.5rem; }
+.noter-boks ul { list-style: none; padding: 0; }
+.noter-boks ul li { font-size: 0.88rem; color: var(--text); padding: 0.1rem 0; }
+.noter-boks ul li::before { content: "– "; color: var(--text-muted); }
+
+.beslutning-grid, .kilder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+.beslutning-kort, .kilde-kort { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+.beslutning-valg { font-weight: 600; color: var(--accent); margin-bottom: 0.2rem; }
+.beslutning-vs { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.beslutning-vs span { text-decoration: line-through; color: #b91c1c; }
+.udfordring-kort { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-bottom: 0.8rem; }
+.problem { font-size: 0.95rem; font-weight: 500; color: #b91c1c; margin-bottom: 0.3rem; }
+.losning { font-size: 0.95rem; font-weight: 500; color: #065f46; }
+.kilde-kort h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+.kilde-kort p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+.kilde-kort a { font-size: 0.78rem; color: var(--link); word-break: break-all; text-decoration: none; }
+.projekt-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem; }
+.artikel-indhold { font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; }
+
+.site-footer { border-top: 1px solid var(--border); padding: 2.5rem 2rem; margin-top: 3rem; }
+.footer-inner { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.site-footer h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+.site-footer p { color: var(--text-muted); font-size: 0.88rem; }
+
+@media (max-width: 600px) {
+  .page { padding: 2rem 1.2rem 3rem; }
+  .page-header h1 { font-size: 1.8rem; }
+  .footer-inner, .beslutning-grid, .kilder-grid { grid-template-columns: 1fr; }
+  .laeringslog-timeline { margin-left: 0.5rem; }
+  .uge-kort { padding-left: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <span class="site-title" onclick="showPage('forside')">Yasin Yavuz – Studieportfolio</span>
+    <nav class="site-nav">
+      <a onclick="showPage('blog')">Blog</a>
+      <a onclick="showPage('eksperimenter')">Eksperimenter</a>
+      <a onclick="showPage('forside')">Forside</a>
+      <a onclick="showPage('laeringsplan')">Laeringsmal og laeringsplan</a>
+      <a onclick="showPage('noter')">Noter</a>
+      <a onclick="showPage('projekter')">Projekter</a>
+      <a onclick="showPage('refleksioner')">Refleksioner</a>
+    </nav>
+  </div>
+</header>
+
+<!-- FORSIDE -->
+<div class="page active" id="page-forside">
+  <div class="page-header"><h1>Forside</h1></div>
+  <section class="content-section">
+    <h2>Navigation</h2>
+    <ul class="nav-list">
+      <li><a onclick="showPage('blog')">Blog (ugentligt)</a></li>
+      <li><a onclick="showPage('projekter')">Projekter</a></li>
+      <li><a onclick="showPage('noter')">Noter</a></li>
+      <li><a onclick="showPage('eksperimenter')">Eksperimenter</a></li>
+      <li><a onclick="showPage('refleksioner')">Refleksioner</a></li>
+      <li><a onclick="showPage('laeringsplan')">Laeringsmal og laeringsplan</a></li>
+    </ul>
+  </section>
+  <section class="content-section">
+    <h2>Formal</h2>
+    <p>Her dokumenterer jeg lobende mit arbejde gennem semestret – inkl. skitser, noter, eksperimenter og faerdige/ufaerdige produkter.</p>
+  </section>
+  <section class="content-section">
+    <h2>Seneste blogindlaeg</h2>
+    <ul class="blog-list">
+      <li><a onclick="showBlogPost(21)">Uge 21 – Flutter – APK, debugging og fejlhaandtering</a> <span class="dato">– 13-05-2026</span></li>
+      <li><a onclick="showBlogPost(20)">Uge 20 – Flutter – Firebase Authentication og admin-panel</a> <span class="dato">– 06-05-2026</span></li>
+      <li><a onclick="showBlogPost(19)">Uge 19 – Flutter – Real-time streams og pladsplan</a> <span class="dato">– 29-04-2026</span></li>
+    </ul>
+  </section>
+</div>
+
+<!-- BLOG -->
+<div class="page" id="page-blog">
+  <div class="page-header"><h1>Blog</h1></div>
+  <section class="content-section">
+    <h2>Blog (mindst ugentligt)</h2>
+    <ul class="blog-list">
+      <li><a onclick="showBlogPost(21)">Uge 21 – Flutter – APK, debugging og fejlhaandtering</a> <span class="dato">– 13-05-2026</span></li>
+      <li><a onclick="showBlogPost(20)">Uge 20 – Flutter – Firebase Authentication og admin-panel</a> <span class="dato">– 06-05-2026</span></li>
+      <li><a onclick="showBlogPost(19)">Uge 19 – Flutter – Real-time streams og pladsplan</a> <span class="dato">– 29-04-2026</span></li>
+      <li><a onclick="showBlogPost(18)">Uge 18 – Flutter – Firebase og Firestore integration</a> <span class="dato">– 22-04-2026</span></li>
+      <li><a onclick="showBlogPost(17)">Uge 17 – Flutter – Navigation og formularer</a> <span class="dato">– 15-04-2026</span></li>
+      <li><a onclick="showBlogPost(16)">Uge 16 – Flutter – Dart og de forste widgets</a> <span class="dato">– 09-04-2026</span></li>
+      <li><a onclick="showBlogPost(15)">Uge 15 – Zombie Spil – Visuals, URP og Lyd</a> <span class="dato">– 02-04-2026</span></li>
+      <li><a onclick="showBlogPost(14)">Uge 14 – Zombie Spil – Weapons og UI</a> <span class="dato">– 26-03-2026</span></li>
+      <li><a onclick="showBlogPost(13)">Uge 13 – Zombie Spil – Game Systems og Patterns</a> <span class="dato">– 19-03-2026</span></li>
+      <li><a onclick="showBlogPost(12)">Uge 12 – Zombie Spil – AI og NavMesh</a> <span class="dato">– 12-03-2026</span></li>
+      <li><a onclick="showBlogPost(11)">Uge 11 – Zombie Spil – C# og PlayerController</a> <span class="dato">– 05-03-2026</span></li>
+      <li><a onclick="showBlogPost(10)">Uge 10 – Zombie Spil – Unity Grundlaeggende og Map</a> <span class="dato">– 26-02-2026</span></li>
+      <li><a onclick="showBlogPost(9)">Uge 9 – Create with Code – Unit 5 og afslutning</a> <span class="dato">– 19-02-2026</span></li>
+      <li><a onclick="showBlogPost(8)">Uge 8 – Create with Code – Unit 3 og 4</a> <span class="dato">– 12-02-2026</span></li>
+      <li><a onclick="showBlogPost(7)">Uge 7 – Create with Code – Unit 1 og 2</a> <span class="dato">– 05-02-2026</span></li>
+      <li><a onclick="showBlogPost(6)">Uge 6 – Opstart og introduktion til Unity</a> <span class="dato">– 29-01-2026</span></li>
+    </ul>
+  </section>
+</div>
+
+<!-- BLOG DETALJE -->
+<div class="page" id="page-blog-detalje">
+  <div class="page-header">
+    <span class="uge-tag" id="blog-uge"></span>
+    <h1 id="blog-titel"></h1>
+    <p class="dato" id="blog-dato"></p>
+  </div>
+  <section class="content-section">
+    <div class="artikel-indhold"><p id="blog-indhold"></p></div>
+    <div class="tilbage-link"><a onclick="showPage('blog')">Tilbage til blog</a></div>
+  </section>
+</div>
+
+<!-- PROJEKTER -->
+<div class="page" id="page-projekter">
+  <div class="page-header"><h1>Projekter</h1></div>
+  <section class="content-section">
+    <h2>Projekter</h2>
+    <div class="projekt-kort">
+      <h3>Create with Code – Unity Laerlingskursus</h3>
+      <p class="teknologi-tag">Unity, C#, Visual Studio 2022</p>
+      <p>Unitys officielle begynderkursus i spiludvikling med C#. Gennemfort over 3 uger med alle 5 units inkl. projekter og quizzer.</p>
+      <div class="projekt-actions">
+        <button class="btn-primary" onclick="showProjekt(3)">Se dokumentation</button>
+      </div>
+    </div>
+    <div class="projekt-kort">
+      <h3>First-Person Zombie Survival Spil</h3>
+      <p class="teknologi-tag">Unity 6, C#, Visual Studio 2022, ProBuilder, NavMesh AI</p>
+      <p>Et first-person zombie survival spil bygget i Unity 6 over 6 uger med AI-styrede zombier, rundebaseret svaerhedsgrad, raycasting-vabensystem og fuldt HUD.</p>
+      <div class="projekt-actions">
+        <button class="btn-primary" onclick="showProjekt(1)">Se dokumentation</button>
+      </div>
+    </div>
+    <div class="projekt-kort">
+      <h3>Global Gaming – Booking App</h3>
+      <p class="teknologi-tag">Flutter, Dart, Firebase, Cloud Firestore, Firebase Auth</p>
+      <p>En Android booking-app til et gaming cafe med visuel pladsplan, real-time opdatering fra Firebase og et admin-panel med statistik og login.</p>
+      <div class="projekt-actions">
+        <button class="btn-primary" onclick="showProjekt(2)">Se dokumentation</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROJEKT DETALJE -->
+<div class="page" id="page-projekt-detalje">
+  <div class="page-header">
+    <span class="tilbage-breadcrumb" onclick="showPage('projekter')">Tilbage til projekter</span>
+    <h1 id="pd-titel"></h1>
+    <p class="teknologi-tag" id="pd-teknologi"></p>
+  </div>
+  <section class="content-section"><p id="pd-beskrivelse" style="font-size:1.05rem;line-height:1.8;"></p></section>
+  <section class="content-section">
+    <h2>Ugentlig laeringslog</h2>
+    <div class="laeringslog-timeline" id="pd-log"></div>
+  </section>
+  <section class="content-section">
+    <h2>Design beslutninger</h2>
+    <div class="beslutning-grid" id="pd-beslutninger"></div>
+  </section>
+  <section class="content-section">
+    <h2>Udfordringer lost</h2>
+    <div id="pd-udfordringer"></div>
+  </section>
+  <section class="content-section">
+    <h2>Kilder brugt i projektet</h2>
+    <div class="kilder-grid" id="pd-kilder"></div>
+  </section>
+  <div class="tilbage-link"><a onclick="showPage('projekter')">Tilbage til projekter</a></div>
+</div>
+
+<!-- NOTER -->
+<div class="page" id="page-noter">
+  <div class="page-header"><h1>Noter</h1></div>
+  <section class="content-section">
+    <h2>C# Grundlaeggende</h2>
+    <div class="noter-boks"><ul>
+      <li>Klasser er skabeloner – objekter er instanser af klasser</li>
+      <li>MonoBehaviour er base-klassen for alle Unity scripts</li>
+      <li>SerializeField eksponerer private variable i Inspector</li>
+      <li>Awake() koerer foer Start() – brug Awake til initialisering</li>
+      <li>Update() koerer hver frame, FixedUpdate() koerer fast (fysik)</li>
+      <li>Coroutines bruger yield return – tillader tidsforsinkede handlinger</li>
+      <li>Events og Actions bruges til loes kobling mellem scripts</li>
+      <li>Singleton pattern: een instans tilgaengelig globalt via static reference</li>
+      <li>async/await bruges til asynkrone operationer (Firebase, netvaerk)</li>
+      <li>enum definerer en naevnt maengde af konstanter</li>
+    </ul></div>
+  </section>
+  <section class="content-section">
+    <h2>Unity Koncepter</h2>
+    <div class="noter-boks"><ul>
+      <li>GameObject er alle objekter i en Unity scene</li>
+      <li>Komponenter tilfojes GameObjects og definerer adfaerd</li>
+      <li>Prefabs er genanvendelige GameObject-skabeloner</li>
+      <li>NavMesh bages paa terran – NavMeshAgent navigerer automatisk</li>
+      <li>Raycast sender en usynlig strale og returnerer hvad den rammer</li>
+      <li>CharacterController giver FPS-bevaegelse uden Rigidbody-fysik</li>
+      <li>Canvas bruges til UI – World Space vs Screen Space</li>
+      <li>TextMeshPro giver bedre tekstrendering end standard UI Text</li>
+      <li>AudioSource afspiller lyd – AudioClip er selve lydfilen</li>
+      <li>URP (Universal Render Pipeline) – opgraderede shaders kraeves</li>
+      <li>ProBuilder bruges til at modellere 3D geometry direkte i Unity</li>
+      <li>Mathf.Pow(base, exponent) – bruges til eksponentiel svaerhedsgrad</li>
+    </ul></div>
+  </section>
+  <section class="content-section">
+    <h2>Flutter og Dart</h2>
+    <div class="noter-boks"><ul>
+      <li>Alt i Flutter er widgets – UI bygges som et widget-trae</li>
+      <li>StatelessWidget har inget state – StatefulWidget kan opdateres</li>
+      <li>setState() fortaeller Flutter at UI skal genopbygges</li>
+      <li>BuildContext er en widgets "adresse" i widget-traeet</li>
+      <li>Navigator.push/pop bruges til navigation mellem skaerme</li>
+      <li>Future er et enkelt asynkront resultat – Stream er en kontinuerlig stroem</li>
+      <li>StreamBuilder genopbygger UI automatisk ved nye stream-data</li>
+      <li>GlobalKey bruges til at tilgaa FormState udefra</li>
+      <li>mounted-check er obligatorisk efter await i StatefulWidget</li>
+      <li>Navigator.pop() skal kaldes synkront foer enhver await-operation</li>
+    </ul></div>
+  </section>
+  <section class="content-section">
+    <h2>Firebase</h2>
+    <div class="noter-boks"><ul>
+      <li>Firestore struktur: collections > documents > fields</li>
+      <li>Datoer gemmes som Timestamp – skal konverteres ved laesning</li>
+      <li>Offline persistence: data caches lokalt – kan skjule fejl</li>
+      <li>PERMISSION_DENIED vises ikke direkte hvis offline cache er aktiv</li>
+      <li>authStateChanges() er en stream der lytter paa login-status</li>
+      <li>Sikkerhedsregler defineres i Firestore Console – always validate</li>
+      <li>google-services.json skal vaere i android/app mappen</li>
+    </ul></div>
+  </section>
+</div>
+
+<!-- REFLEKSIONER -->
+<div class="page" id="page-refleksioner">
+  <div class="page-header"><h1>Refleksioner</h1></div>
+  <section class="content-section">
+    <h2>Refleksioner</h2>
+    <div class="refleksion-kort">
+      <span class="kategori-tag">Semester</span>
+      <h3>Fra Unity til Flutter – to verdener, een tilgang</h3>
+      <p class="dato">18-05-2026</p>
+      <p style="margin-top:0.5rem;">Semestret har givet mig erfaring med to vidt forskellige teknologier. Unity er komponent-baseret og visuel, Flutter er deklarativ og kodebaseret. Men laeringsprocessen var den samme: start med det enkle, byg op, fejlfind systematisk. Det vigtigste jeg har taget med mig er ikke selve koden, men evnen til at laere nyt hurtigt og ikke give op naar noget ikke virker.</p>
+    </div>
+    <div class="refleksion-kort">
+      <span class="kategori-tag">Teknisk</span>
+      <h3>Fejlfinding som laeringsproces</h3>
+      <p class="dato">15-05-2026</p>
+      <p style="margin-top:0.5rem;">Da zombierne ikke bevægede sig brugte jeg en time paa at debugge. Loesningen var simpel – et manglende tag. I Flutter opdagede jeg at 15 bookinger aldrig naaede Firebase fordi jeg kiggede i den forkerte database. Begge gange laerte jeg mere af fejlen end af den tutorial der kom foer. Fejlfinding er ikke spild af tid – det er der den rigtige laering sker.</p>
+    </div>
+    <div class="refleksion-kort">
+      <span class="kategori-tag">Proces</span>
+      <h3>Selvstaendig laering paa 4. semester</h3>
+      <p class="dato">10-05-2026</p>
+      <p style="margin-top:0.5rem;">4. semester er anderledes end de foregaaende. Der er ingen pensumliste der fortaeller hvad man skal laere – man vaelger selv. Det har kraevet disciplin og struktur at holde fremdriften. Laeringsloggen i denne portfolio har hjulpet mig med at se progression, selv paa de uger hvor det foeltes som om jeg ikke kom nogen vegne.</p>
+    </div>
+    <div class="refleksion-kort">
+      <span class="kategori-tag">Laering</span>
+      <h3>Create with Code som fundament</h3>
+      <p class="dato">20-02-2026</p>
+      <p style="margin-top:0.5rem;">Create with Code kurset fra Unity var det rigtige sted at starte. Det gav mig et solidt fundament i baade C# og Unity's komponent-system, som jeg direkte kunne bygge videre paa i zombie-projektet. Strukturen med Units og quizzer hjalp mig med at holde fokus og maale min egen progression.</p>
+    </div>
+  </section>
+</div>
+
+<!-- LAERINGSPLAN -->
+<div class="page" id="page-laeringsplan">
+  <div class="page-header"><h1>Laeringsmal og laeringsplan</h1></div>
+  <section class="content-section">
+    <h2>Laeringsmal</h2>
+    <div class="laeringsmaal-kort opnaaet">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.3rem;"><h3>Gennemfoere Unity Create with Code kurset</h3><span class="status-badge badge-opnaaet">Opnaet</span></div>
+      <p>Alle 5 units gennemfoert med tilhoerende projekter og quizzer.</p>
+      <p class="dato" style="margin-top:0.3rem;">Deadline: 19-02-2026</p>
+    </div>
+    <div class="laeringsmaal-kort opnaaet">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.3rem;"><h3>Laere Unity 6 og C#</h3><span class="status-badge badge-opnaaet">Opnaet</span></div>
+      <p>Udvikle et komplet spil i Unity med AI, gameplay-mekanikker, lyd og UI.</p>
+      <p class="dato" style="margin-top:0.3rem;">Deadline: 02-04-2026</p>
+    </div>
+    <div class="laeringsmaal-kort opnaaet">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.3rem;"><h3>Forstaa AI Navigation (NavMesh)</h3><span class="status-badge badge-opnaaet">Opnaet</span></div>
+      <p>Implementere NavMesh-baseret zombie AI med state machine.</p>
+      <p class="dato" style="margin-top:0.3rem;">Deadline: 12-03-2026</p>
+    </div>
+    <div class="laeringsmaal-kort opnaaet">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.3rem;"><h3>Laere design patterns i C#</h3><span class="status-badge badge-opnaaet">Opnaet</span></div>
+      <p>Bruge Singleton pattern og Events/Actions i et rigtigt projekt.</p>
+      <p class="dato" style="margin-top:0.3rem;">Deadline: 19-03-2026</p>
+    </div>
+    <div class="laeringsmaal-kort opnaaet">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.3rem;"><h3>Laere Flutter og Dart fra bunden</h3><span class="status-badge badge-opnaaet">Opnaet</span></div>
+      <p>Bygge en funktionel mobilapp med Flutter uden forudgaaende erfaring.</p>
+      <p class="dato" style="margin-top:0.3rem;">Deadline: 13-05-2026</p>
+    </div>
+    <div class="laeringsmaal-kort opnaaet">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.3rem;"><h3>Integrere Firebase i en mobilapp</h3><span class="status-badge badge-opnaaet">Opnaet</span></div>
+      <p>Bruge Cloud Firestore til real-time data og Firebase Auth til admin-login.</p>
+      <p class="dato" style="margin-top:0.3rem;">Deadline: 13-05-2026</p>
+    </div>
+    <div class="laeringsmaal-kort opnaaet">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.3rem;"><h3>Forstaa asynkron programmering</h3><span class="status-badge badge-opnaaet">Opnaet</span></div>
+      <p>Mestre async/await, Future og Stream i Dart til cloud-kommunikation.</p>
+      <p class="dato" style="margin-top:0.3rem;">Deadline: 06-05-2026</p>
+    </div>
+  </section>
+</div>
+
+<!-- EKSPERIMENTER -->
+<div class="page" id="page-eksperimenter">
+  <div class="page-header"><h1>Eksperimenter</h1></div>
+  <section class="content-section">
+    <h2>Eksperimenter</h2>
+    <div class="eksperiment-kort">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.4rem;"><h3>Create with Code – Prototype variationer</h3><span class="status-badge badge-afsluttet">Afsluttet</span></div>
+      <p><strong>Teknologi:</strong> Unity, C#</p>
+      <p style="margin-top:0.3rem;">Test af forskellige variationer paa de officielle Create with Code prototyper – aeendring af spawning-rate, hastighed og point-system for at forstaae parameterenes effekt.</p>
+      <p class="dato" style="margin-top:0.3rem;">19-02-2026</p>
+    </div>
+    <div class="eksperiment-kort">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.4rem;"><h3>Eksponentiel zombie scaling med Mathf.Pow</h3><span class="status-badge badge-afsluttet">Afsluttet</span></div>
+      <p><strong>Teknologi:</strong> Unity, C#</p>
+      <p style="margin-top:0.3rem;">Test af forskellige formler til svaerhedsgrad. Mathf.Pow gav den bedste kurve – lineaer voksede for langsomt, kvadratisk for hurtigt.</p>
+      <p class="dato" style="margin-top:0.3rem;">19-03-2026</p>
+    </div>
+    <div class="eksperiment-kort">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.4rem;"><h3>NavMesh paa dynamiske objekter</h3><span class="status-badge badge-igangvaerende">Igangvaerende</span></div>
+      <p><strong>Teknologi:</strong> Unity 6, NavMesh</p>
+      <p style="margin-top:0.3rem;">Forsoeg paa at lade zombier navigere rundt om bevagelige kasser. Kraever NavMeshObstacle komponent – ikke fuldt implementeret endnu.</p>
+      <p class="dato" style="margin-top:0.3rem;">26-03-2026</p>
+    </div>
+    <div class="eksperiment-kort">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.4rem;"><h3>StreamBuilder vs FutureBuilder i Flutter</h3><span class="status-badge badge-afsluttet">Afsluttet</span></div>
+      <p><strong>Teknologi:</strong> Flutter, Dart</p>
+      <p style="margin-top:0.3rem;">Sammenligning af de to tilgange til at hente data. StreamBuilder giver real-time opdatering uden refresh. StreamBuilder valgt til booking-listen.</p>
+      <p class="dato" style="margin-top:0.3rem;">29-04-2026</p>
+    </div>
+    <div class="eksperiment-kort">
+      <div style="display:flex;align-items:center;flex-wrap:wrap;margin-bottom:0.4rem;"><h3>Firestore offline persistence debugging</h3><span class="status-badge badge-afsluttet">Afsluttet</span></div>
+      <p><strong>Teknologi:</strong> Flutter, Firebase</p>
+      <p style="margin-top:0.3rem;">Undersoegelse af hvordan Firestores offline-cache kan skjule PERMISSION_DENIED fejl. Data vises lokalt selvom det aldrig naar cloud-databasen.</p>
+      <p class="dato" style="margin-top:0.3rem;">13-05-2026</p>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><h3>Yasin Yavuz – Studieportfolio</h3><p>4. semester Datamatiker – UCL Erhvervsakademi</p></div>
+    <div><p>Studieportfolio med projekter, noter, refleksioner og ugentlig blog.</p></div>
+  </div>
+</footer>
+
+<script>
+const blogPosts = {
+  21: { uge: "Uge 21", titel: "Flutter – APK, debugging og fejlhaandtering", dato: "13-05-2026", indhold: "Den afsluttende uge boed paa tre store problemer der alle kraevede systematisk fejlfinding. En dialog lukkede ikke korrekt fordi konteksten var forlaeldet efter en async-operation — loesningen var at kalde Navigator.pop() synkront FOER enhver await. Bookinger naaede aldrig Firebase fordi jeg kiggede i den forkerte database, og Firestores offline-cache skjulte fejlen. Og paa fysisk telefon virkede appen ikke — en manglende INTERNET-permission i AndroidManifest.xml til release-buildet. Alle tre problemer er nu loest, og APK'en er installeret og testet paa en rigtig Android-telefon." },
+  20: { uge: "Uge 20", titel: "Flutter – Firebase Authentication og admin-panel", dato: "06-05-2026", indhold: "Denne uge tilfoejede jeg et admin-panel med Firebase Authentication. Jeg implementerede login med email og password og laerte authStateChanges() stream til at lytte paa login-status i realtid. Admin-dashboardet viser statistik over bookinger, timer og omsaetning, og giver mulighed for at filtrere paa dato og slette bookinger. Det var foerste gang jeg arbejdede med rigtig brugerstyring — det foeltes som et stort skridt mod en reel app." },
+  19: { uge: "Uge 19", titel: "Flutter – Real-time streams og pladsplan", dato: "29-04-2026", indhold: "Jeg skiftede fra Future til Stream for at faa real-time opdatering direkte fra Firestore. StreamBuilder genopbygger automatisk UI'en naar data aendrer sig — det var naesten magisk foerste gang jeg saa det virke. Jeg implementerede overlap-logik for at forhindre dobbeltbooking og byggede den visuelle pladsplan med GridView, hvor ledige stationer er gronner og optagne er roede." },
+  18: { uge: "Uge 18", titel: "Flutter – Firebase og Firestore integration", dato: "22-04-2026", indhold: "Uge 18 var den mest magiske uge. Jeg oprettede et Firebase-projekt, tilsluttede min Android-app og saa for foerste gang data dukke op i Firebase Console efter jeg trykkede Book. Jeg laerte Firestores struktur med collections, documents og fields, og at datoer gemmes som Timestamp og skal konverteres. BookingService blev bygget som singleton med addBooking() og cancelBooking()." },
+  17: { uge: "Uge 17", titel: "Flutter – Navigation og formularer", dato: "15-04-2026", indhold: "Denne uge laerte jeg navigation i Flutter med Navigator.push, pop og pushReplacement. Jeg forstod BuildContext som en adresse i widget-traeet — et koncept der er lidt abstrakt i starten, men som giver mening naar man arbejder med formularer. Jeg implementerede booking-formularen med GlobalKey og validering. Foerste gang jeg brugte async/await og Future til asynkrone operationer." },
+  16: { uge: "Uge 16", titel: "Flutter – Dart og de forste widgets", dato: "09-04-2026", indhold: "Foerste uge med Flutter og Dart uden nogen forudgaaende erfaring. Jeg startede med Dart-syntaks: variable, typer, funktioner og klasser. Den stoerste aha-oplevelse var forskellen paa StatelessWidget og StatefulWidget, og at setState() er det der genopbygger UI'en. Jeg byggede de foerste simple skaerme med Scaffold, AppBar, Column, Text og ElevatedButton — og forstod at i Flutter er ALT widgets indeni widgets." },
+  15: { uge: "Uge 15", titel: "Zombie Spil – Visuals, URP og Lyd", dato: "02-04-2026", indhold: "Denne uge fokuserede jeg paa det visuelle. Jeg loeste det klassiske pink material problem ved at opgradere alle materialer til URP shaders. Jeg satte stemningsfuld belysning op med Point Lights og Directional Light. Importerede en gratis zombie model fra Unity Asset Store og tilfoejede lyd til vabensystemet med AudioSource og AudioClip." },
+  14: { uge: "Uge 14", titel: "Zombie Spil – Weapons og UI", dato: "26-03-2026", indhold: "Denne uge byggede jeg vabensystemet ved hjaelp af Raycasting (hitscan). Implementerede ammo-taeller, reload med Coroutines og visuelt feedback. Satte Canvas op med TextMeshPro HUD der viser health, points, ammo og runde." },
+  13: { uge: "Uge 13", titel: "Zombie Spil – Game Systems og Patterns", dato: "19-03-2026", indhold: "Fokus paa arkitektur denne uge. Laerte Singleton pattern og brugte det til GameManager, RoundManager og ZombieSpawner. Implementerede C# Events og Actions til kommunikation mellem scripts. Eksponentiel svaerhedsgrad med Mathf.Pow goer at spillet bliver svaerere for hver runde." },
+  12: { uge: "Uge 12", titel: "Zombie Spil – AI og NavMesh", dato: "12-03-2026", indhold: "Denne uge dykkede jeg ned i Unitys NavMesh system. Bagte NavMesh paa mit map og satte NavMeshAgent op paa zombie-prefabbet. Byggede en state machine med enum (Chase/Attack/Dead). Det store problem: zombierne bevagede sig slet ikke! Efter systematisk fejlfinding fandt jeg ud af at Player tag manglede paa spilleren." },
+  11: { uge: "Uge 11", titel: "Zombie Spil – C# og PlayerController", dato: "05-03-2026", indhold: "Laerte C# grundlaeggende: klasser, MonoBehaviour, SerializeField og Update/Awake lifecycle. Byggede PlayerController med CharacterController komponent. Loeste et irriterende problem med New vs Old Input System ved at saette begge aktive i Project Settings." },
+  10: { uge: "Uge 10", titel: "Zombie Spil – Unity Grundlaeggende og Map", dato: "26-02-2026", indhold: "Foerste uge med Unity 6 i mit eget projekt. Laerte interfacet, scene opsaetning, GameObjects og Components. Installerede AI Navigation og ProBuilder packages. Brugte ProBuilder til at bygge mit foerste map med floor, walls, pillars og crates." },
+  9: { uge: "Uge 9", titel: "Create with Code – Unit 5 og afslutning", dato: "19-02-2026", indhold: "Afsluttende uge paa Create with Code kurset. Unit 5 handlede om User Interface: scene-skift, menus, PlayerPrefs til at gemme high scores og en samlet game over-skaerm. Jeg gennemfoerte den officielle Unity-eksamen for kurset og fik mit certifikat. Det var en god foelelse at have et struktureret kursus bag mig — nu foeltes Unity meget mere tilgaengeligt." },
+  8: { uge: "Uge 8", titel: "Create with Code – Unit 3 og 4", dato: "12-02-2026", indhold: "Unit 3 introducerede lyd og visuelle effekter: AudioSource, AudioClip, ParticleSystem og grundlaeggende UI med score-display. Unit 4 gik dybere ind i gameplay-mekanikker med Raycasting, arrays til at styre flere objekter og Random.Range til procedural spawning. Det var her jeg foerste gang rigtig forstod hvordan Raycasting virker — konceptet brugte jeg direkte i zombie-projektets vabensystem." },
+  7: { uge: "Uge 7", titel: "Create with Code – Unit 1 og 2", dato: "05-02-2026", indhold: "Startede paa Unitys officielle Create with Code kursus. Unit 1 daekkede grundlaeggende player control: Input.GetAxis, Translate, Rigidbody og grundlaeggende fysik. Unit 2 handlede om basic gameplay: Instantiate til spawning, Destroy til at fjerne objekter, kollisionsdetektion og et simpelt point-system. Hvert unit sluttede med et prototype-projekt og en quiz." },
+  6: { uge: "Uge 6", titel: "Opstart og introduktion til Unity", dato: "29-01-2026", indhold: "Semesterets foerste uge. Jeg valgte mine to valgfag: Unity spiludvikling og Flutter mobiludvikling. Installerede Unity Hub, Unity 6 og Visual Studio 2022. Gennemgik Unitys interface: Scene view, Game view, Hierarchy, Project og Inspector. Oprettede dette portfolio-site og planlagde mine laeringsmal for semestret." }
+};
+
+const projekter = {
+  3: {
+    titel: "Create with Code – Unity Laerlingskursus",
+    teknologi: "Unity, C#, Visual Studio 2022",
+    beskrivelse: "Unitys officielle begynderkursus i spiludvikling med C#. Gennemfoert over 3 uger (uge 7-9) med alle 5 units, tilhoerende prototype-projekter og quizzer. Kurset gav et solidt fundament i baade Unity-interfacet og C# programmering.",
+    log: [
+      { uge: 7, titel: "Unit 1 og 2 – Player Control og Basic Gameplay", laerte: "Input.GetAxis til bevaegelse, Translate og Rigidbody til fysik. Instantiate til spawning, Destroy til at fjerne objekter, kollisionsdetektion og simpelt point-system.", byggede: ["Prototype 1: Kjoer en bil paa en vej og undgaa hindringer", "Prototype 2: Fodring af dyr – kast mad og undgaa fjender"], noter: ["Input.GetAxis returnerer vaerdi mellem -1 og 1", "Rigidbody.AddForce() anvender fysik-kraft", "OnCollisionEnter() detekterer kollision med andre Rigidbodies", "Instantiate(prefab, position, rotation) spawner et nyt objekt", "Destroy(gameObject) fjerner et objekt fra scenen"], kilder: ["https://learn.unity.com/course/create-with-code"] },
+      { uge: 8, titel: "Unit 3 og 4 – Lyd, Effekter og Gameplay Mekanikker", laerte: "AudioSource og AudioClip til lyd. ParticleSystem til visuelle effekter. Raycasting, arrays og Random.Range til avancerede mekanikker.", byggede: ["Prototype 3: Jaeger-spil med lyd og particle effects", "Prototype 4: Ingredient-spil med Raycast og array-styring"], noter: ["AudioSource.PlayOneShot() afspiller lyd uden at stoppe andre lyde", "ParticleSystem instantieres og Destroy'es efter afspilning", "Physics.Raycast() sender en strale og returnerer RaycastHit", "Arrays: datatype[] navn = new datatype[stoerrelse]", "Random.Range(min, max) – max er eksklusiv for integers"], kilder: ["https://learn.unity.com/course/create-with-code"] },
+      { uge: 9, titel: "Unit 5 og afslutning – User Interface og certifikat", laerte: "Scene management med SceneManager.LoadScene(). UI Canvas med knapper og tekstfelter. PlayerPrefs til at gemme data mellem sessioner.", byggede: ["Prototype 5: Spil med komplet menu, game over og high score", "Bestaaet Unity Create with Code certifikat-eksamen"], noter: ["SceneManager.LoadScene() skifter scene", "PlayerPrefs.SetInt/GetInt gemmer data persistent", "Button.onClick.AddListener() tilknytter funktion til knap", "Time.timeScale = 0 pauser spillet"], kilder: ["https://learn.unity.com/course/create-with-code", "https://docs.unity3d.com"] }
+    ],
+    beslutninger: [
+      { valg: "Create with Code foer eget projekt", alternativ: "Starte direkte med zombie-spil", begrundelse: "Struktureret laering gav solidt fundament – koncepter som Raycasting og Instantiate brugte jeg direkte bagefter" },
+      { valg: "Alle 5 units gennemfoert", alternativ: "Kun relevante units", begrundelse: "Komplet gennemfoersel sikrede at ingen grundlaeggende koncepter blev sprunget over" }
+    ],
+    udfordringer: [
+      { problem: "Rigidbody og CharacterController konflikt i prototype", losning: "Laerte at man ikke skal kombinere begge – valg af een tilgang til bevaegelse" },
+      { problem: "Particle effects forsvandt ikke efter afspilning", losning: "Tilfoejede Destroy(gameObject, duration) med praecis varighed" }
+    ],
+    kilder: [
+      { navn: "Unity Learn – Create with Code", url: "https://learn.unity.com/course/create-with-code", anvendelse: "Primaar kursusplatform for alle 5 units" },
+      { navn: "Unity Dokumentation", url: "https://docs.unity3d.com", anvendelse: "API-reference undervejs i kursuset" }
+    ]
+  },
+  1: {
+    titel: "First-Person Zombie Survival Spil",
+    teknologi: "Unity 6, C#, Visual Studio 2022, ProBuilder, NavMesh AI",
+    beskrivelse: "Et first-person zombie survival spil bygget i Unity 6 over 6 uger (uge 10-15). Spillet har AI-styrede zombier, rundebaseret svaerhedsgrad, et raycasting-vabensystem, points-system og et fuldt HUD.",
+    log: [
+      { uge: 10, titel: "Unity Grundlaeggende og Map", laerte: "Unity interface, scene opsaetning, GameObjects og Components. Installerede packages: AI Navigation, ProBuilder.", byggede: ["Map med ProBuilder (floor, walls, pillars, crates)"], kilder: ["https://docs.unity3d.com"] },
+      { uge: 11, titel: "C# Scripting og Player", laerte: "C# klasser, MonoBehaviour, SerializeField, Update/Awake lifecycle metoder.", byggede: ["PlayerController med CharacterController", "WASD bevaegelse og mus-kamera"], udfordring: "New vs Old Input System konflikt – loest ved at aktivere begge i Project Settings", noter: ["CharacterController.Move() haandterer bevaegelse uden fysik", "Camera.main refererer til hovedkameraet", "Input System: begge versioner kan koere parallelt"], kilder: ["https://docs.unity3d.com/ScriptReference", "https://learn.microsoft.com/dotnet/csharp"] },
+      { uge: 12, titel: "AI og NavMesh", laerte: "NavMesh baking, NavMeshAgent komponenten og state machine med C# enum.", byggede: ["ZombieAI med state machine (Chase/Attack/Dead)"], udfordring: "Zombier bevagede sig ikke – manglende Player tag paa spilleren. Laerte systematisk fejlfinding.", noter: ["NavMesh baages via Window > AI > Navigation", "NavMeshAgent.SetDestination() saetter maal automatisk", "Enum state machines: switch(currentState) { case State.Chase: ... }"], kilder: ["https://docs.unity3d.com/Manual/nav-CreateNavMeshAgent.html"] },
+      { uge: 13, titel: "Game Systems og Patterns", laerte: "Singleton pattern, Coroutines, C# Events og Actions til script-kommunikation.", byggede: ["GameManager", "RoundManager", "ZombieSpawner", "PlayerHealth", "PlayerPoints med eksponentiel svaerhedsgrad"], noter: ["Singleton: private static Instance; public static Instance => _instance", "StartCoroutine(IEnumerator) starter en coroutine", "yield return new WaitForSeconds(t) venter t sekunder", "Mathf.Pow(base, exp) – bruges til eksponentiel vaekst"], kilder: ["https://refactoring.guru/design-patterns/singleton", "https://learn.microsoft.com/dotnet/csharp"] },
+      { uge: 14, titel: "Weapons og UI", laerte: "Raycasting til hitscan vabensystem og Canvas/TextMeshPro til HUD.", byggede: ["WeaponSystem med ammo og reload", "HUD med health, points, ammo og runde display"], noter: ["Physics.Raycast(origin, direction, out hit, range)", "TextMeshPro.text = vaerdi.ToString()", "Canvas Render Mode: Screen Space Overlay til HUD"], kilder: ["https://docs.unity3d.com/ScriptReference/Physics.Raycast.html"] },
+      { uge: 15, titel: "Visuals og Lyd", laerte: "URP materialer og shaders, stemningsfuld belysning, lydintegration.", byggede: ["URP shader opgradering", "Point Lights og Directional Light opsaetning", "AudioSource til vabensystem"], udfordring: "Pink materialer – opgraderede alle materialer via Edit > Rendering > Materials", noter: ["URP opgradering: Edit > Rendering > Upgrade Materials", "AudioSource.PlayOneShot(clip) til engangslyde", "Point Light raeekkevidde og intensitet saettes i Inspector"], kilder: ["https://docs.unity3d.com/Manual/urp", "https://assetstore.unity.com"] }
+    ],
+    beslutninger: [
+      { valg: "CharacterController", alternativ: "Rigidbody", begrundelse: "Simplere FPS bevaegelse uden fysik-komplikationer" },
+      { valg: "Hitscan Raycast", alternativ: "Fysisk projektil", begrundelse: "Bedre performance og enklere implementering" },
+      { valg: "Singleton pattern", alternativ: "Direkte referencer", begrundelse: "Alle scripts kan nemt kommunikere med managers" },
+      { valg: "Mathf.Pow (eksponentiel)", alternativ: "Lineaer svaerhedsgrad", begrundelse: "Giver en kurve der eskalerer spaendende over tid" }
+    ],
+    udfordringer: [
+      { problem: "NavMesh zombier bevagede sig ikke", losning: "Manglende Player tag paa spillerens GameObject" },
+      { problem: "Input System konflikt", losning: "Skiftede til Both (New + Old) i Project Settings" },
+      { problem: "Pink materialer efter URP skift", losning: "Opgraderede alle materialer via Edit > Rendering > Materials" },
+      { problem: "Zombier gik through floor", losning: "Justerede NavMeshAgent Base Offset til korrekt hoejde" }
+    ],
+    kilder: [
+      { navn: "Unity Dokumentation", url: "https://docs.unity3d.com", anvendelse: "Generel reference gennem hele projektet" },
+      { navn: "Unity Script Reference", url: "https://docs.unity3d.com/ScriptReference", anvendelse: "API-reference til C# scripting" },
+      { navn: "Microsoft C# Docs", url: "https://learn.microsoft.com/dotnet/csharp", anvendelse: "C# sprog og patterns" },
+      { navn: "Refactoring Guru – Singleton", url: "https://refactoring.guru/design-patterns/singleton", anvendelse: "Singleton design pattern" },
+      { navn: "FreeSound.org", url: "https://freesound.org", anvendelse: "Gratis lydeffekter" },
+      { navn: "Unity Asset Store", url: "https://assetstore.unity.com", anvendelse: "Gratis zombie 3D model af PxlTiger" }
+    ]
+  },
+  2: {
+    titel: "Global Gaming – Booking App",
+    teknologi: "Flutter, Dart, Firebase, Cloud Firestore, Firebase Auth",
+    beskrivelse: "En Android booking-app til et gaming cafe bygget over 6 uger (uge 16-21). Brugere kan reservere PC-stationer paa specifikke datoer og tidspunkter. Inkluderer visuel pladsplan, real-time opdatering og et admin-panel med statistik og login.",
+    log: [
+      { uge: 16, titel: "Dart og de foerste widgets", laerte: "Dart-syntaks fra bunden: variable, typer, funktioner og klasser. Forskellen paa StatelessWidget og StatefulWidget, og at setState() genopbygger UI'en.", byggede: ["Foerste simple skaerme med Scaffold, AppBar, Column, Text og ElevatedButton"], noter: ["StatelessWidget: ingen state, genopbygges aldrig af sig selv", "StatefulWidget: har en State-klasse med setState()", "Scaffold giver grundstruktur med AppBar, body og floatingActionButton", "Column og Row arrangerer widgets vertikalt/horisontalt"], kilder: ["https://flutter.dev/docs", "https://dart.dev/guides/language/language-tour"] },
+      { uge: 17, titel: "Navigation og formularer", laerte: "Navigator.push, pop og pushReplacement. BuildContext som adressen paa et widget i traeet. async/await og Future.", byggede: ["Booking-formular med GlobalKey og validering", "Navigation mellem skaerme"], noter: ["Navigator.push(context, MaterialPageRoute(builder: (_) => Screen()))", "GlobalKey<FormState> key = GlobalKey(); key.currentState!.validate()", "TextEditingController til at laese formularvaerdier", "async/await: Future returnerer eet resultat naar det er klart"], kilder: ["https://flutter.dev/docs"] },
+      { uge: 18, titel: "Firebase og Firestore integration", laerte: "Firestores struktur: collections, documents, fields. Timestamp-konvertering. Singleton BookingService.", byggede: ["Firebase-projekt oprettet og tilsluttet Android-app", "BookingService med addBooking() og cancelBooking()"], udfordring: "Foerste gang data viste i Firebase Console – stort oejeblik!", noter: ["FirebaseFirestore.instance.collection(name) refererer en collection", "Timestamp.fromDate(DateTime) konverterer DateTime til Firestore-format", "doc.data() returnerer et Map<String, dynamic>"], kilder: ["https://firebase.google.com/codelabs/firebase-get-to-know-flutter", "https://firebase.flutter.dev"] },
+      { uge: 19, titel: "Real-time streams og pladsplan", laerte: "Stream til real-time opdatering fra Firestore. StreamBuilder genopbygger UI ved data-aendringer. Overlap-logik til dobbeltbooking.", byggede: ["Visuel pladsplan med GridView (groen = ledig, roed = optaget)", "Overlap-logik: startHour < b.endHour && endHour > b.startHour"], noter: ["StreamBuilder<T>(stream: ..., builder: (ctx, snapshot) => ...)", "snapshot.hasData tjekker om data er klar", "snapshot.data indeholder det aktuelle data fra stream"], kilder: ["https://firebase.flutter.dev", "https://flutter.dev/docs"] },
+      { uge: 20, titel: "Firebase Authentication og admin-panel", laerte: "Firebase Auth med email/password. authStateChanges() stream. Firestore sikkerhedsregler.", byggede: ["Admin login-skaerm", "Admin-dashboard med datofilter og statistik"], noter: ["FirebaseAuth.instance.signInWithEmailAndPassword()", "authStateChanges() returnerer Stream<User?> – null hvis ikke logget ind", "Firestore regler: allow read, write: if request.auth != null"], kilder: ["https://firebase.flutter.dev", "https://fireship.io"] },
+      { uge: 21, titel: "Debugging, APK og fejlhaandtering", laerte: "BuildContext levetid efter async. Offline cache skjuler PERMISSION_DENIED. Release-builds kraever egne permissions.", byggede: ["Faerdig APK installeret paa Android-telefon"], udfordring: "3 store problemer loest: stale dialog context, forkert Firebase-database, manglende INTERNET-permission i release AndroidManifest.xml", noter: ["Navigator.pop(ctx) skal kaldes SYNKRONT foer enhver await", "Offline persistence: FirebaseFirestore.instance.settings = Settings(persistenceEnabled: false) for at deaktivere", "AndroidManifest.xml for release ligger i android/app/src/main/"], kilder: ["https://flutter.dev/docs", "https://stackoverflow.com"] }
+    ],
+    beslutninger: [
+      { valg: "Stream + StreamBuilder", alternativ: "Future + FutureBuilder", begrundelse: "Real-time opdatering fra Firestore uden manuel refresh" },
+      { valg: "Singleton BookingService", alternativ: "Ny instans per skaerm", begrundelse: "Een delt instans sikrer konsistent state i hele appen" },
+      { valg: "Firebase Firestore", alternativ: "Lokal SQLite database", begrundelse: "Cloud-baseret real-time database der virker paa tvaers af enheder" },
+      { valg: "Navigator.pop() synkront foer await", alternativ: "Pop efter async operation", begrundelse: "Undgaar stale context-fejl naar dialog lukkes efter Firestore-kald" }
+    ],
+    udfordringer: [
+      { problem: "Dialog lukkede ikke – Navigator.pop() fejlede efter await", losning: "Kald altid Navigator.pop(ctx) synkront som det foerste, inden nogen await-operation" },
+      { problem: "15 bookinger viste lokalt, men Firebase Console var tom", losning: "Firestores offline-cache gemte data lokalt – fandt korrekt Firebase-projekt-URL og oprettede ny database" },
+      { problem: "App virkede ikke paa fysisk telefon", losning: "Manglende INTERNET-permission i release AndroidManifest.xml" }
+    ],
+    kilder: [
+      { navn: "Flutter Dokumentation", url: "https://flutter.dev/docs", anvendelse: "Primaer reference til widgets og navigation" },
+      { navn: "Dart Language Tour", url: "https://dart.dev/guides/language/language-tour", anvendelse: "Dart-syntaks og sprogfunktioner" },
+      { navn: "Firebase Flutter Codelab", url: "https://firebase.google.com/codelabs/firebase-get-to-know-flutter", anvendelse: "Kom i gang med Firebase i Flutter" },
+      { navn: "FlutterFire Dokumentation", url: "https://firebase.flutter.dev", anvendelse: "Firebase packages til Flutter" },
+      { navn: "Fireship.io", url: "https://fireship.io", anvendelse: "Firebase og Flutter tutorials" },
+      { navn: "Stack Overflow", url: "https://stackoverflow.com", anvendelse: "Loebende fejlsoegning" },
+      { navn: "Claude AI", url: "https://claude.ai", anvendelse: "Teknisk sparring og fejlfinding" }
+    ]
+  }
+};
+
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showBlogPost(id) {
+  const post = blogPosts[id];
+  document.getElementById('blog-uge').textContent = post.uge;
+  document.getElementById('blog-titel').textContent = post.titel;
+  document.getElementById('blog-dato').textContent = post.dato;
+  document.getElementById('blog-indhold').textContent = post.indhold;
+  showPage('blog-detalje');
+}
+
+function showProjekt(id) {
+  const p = projekter[id];
+  document.getElementById('pd-titel').textContent = p.titel;
+  document.getElementById('pd-teknologi').textContent = p.teknologi;
+  document.getElementById('pd-beskrivelse').textContent = p.beskrivelse;
+
+  document.getElementById('pd-log').innerHTML = p.log.map(u => `
+    <div class="uge-kort">
+      <div class="uge-nummer">Uge ${u.uge}</div>
+      <div class="uge-indhold">
+        <h3>${u.titel}</h3>
+        <span class="sektion-label">Hvad laerte jeg</span>
+        <p>${u.laerte}</p>
+        ${u.byggede ? `<span class="sektion-label">Hvad jeg byggede</span><ul class="uge-liste">${u.byggede.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+        ${u.noter ? `<span class="sektion-label">Noter</span><div class="noter-boks"><ul>${u.noter.map(n => `<li>${n}</li>`).join('')}</ul></div>` : ''}
+        ${u.udfordring ? `<span class="sektion-label">Udfordring loest</span><div class="udfordring-boks"><p>${u.udfordring}</p></div>` : ''}
+        ${u.kilder ? `<span class="sektion-label">Kilder</span><ul class="kilde-liste-lille">${u.kilder.map(k => `<li><a href="${k}" target="_blank">${k}</a></li>`).join('')}</ul>` : ''}
+      </div>
+    </div>`).join('');
+
+  document.getElementById('pd-beslutninger').innerHTML = p.beslutninger.map(b => `
+    <div class="beslutning-kort">
+      <div class="beslutning-valg">${b.valg}</div>
+      <div class="beslutning-vs">i stedet for <span>${b.alternativ}</span></div>
+      <p>${b.begrundelse}</p>
+    </div>`).join('');
+
+  document.getElementById('pd-udfordringer').innerHTML = p.udfordringer.map(u => `
+    <div class="udfordring-kort">
+      <div class="problem">Problem: ${u.problem}</div>
+      <div class="losning">Loesning: ${u.losning}</div>
+    </div>`).join('');
+
+  document.getElementById('pd-kilder').innerHTML = p.kilder.map(k => `
+    <div class="kilde-kort">
+      <h4>${k.navn}</h4>
+      <p>${k.anvendelse}</p>
+      <a href="${k.url}" target="_blank">${k.url}</a>
+    </div>`).join('');
+
+  showPage('projekt-detalje');
+}
+</script>
+</body>
+</html>
