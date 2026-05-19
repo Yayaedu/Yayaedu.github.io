@@ -208,11 +208,11 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   <section class="content-section">
     <h2>Projekter</h2>
     <div class="projekt-kort">
-      <h3>🧟 First-Person Zombie Survival Spil</h3>
+      <h3> First-Person Zombie Survival Spil</h3>
       <p class="teknologi-tag">Unity 6, C#, Visual Studio 2022, ProBuilder, NavMesh AI</p>
       <p>Et first-person zombie survival spil bygget i Unity 6 over 6 uger med AI-styrede zombier, rundebaseret sværhedsgrad, raycasting-våbensystem og fuldt HUD.</p>
       <div class="projekt-actions">
-        <button class="btn-primary" onclick="showProjekt(1)">📋 Se dokumentation</button>
+        <button class="btn-primary" onclick="showProjekt(1)"> Se dokumentation</button>
       </div>
     </div>
     <div class="projekt-kort">
@@ -220,7 +220,7 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
       <p class="teknologi-tag">Flutter, Dart, Firebase, Cloud Firestore, Firebase Auth</p>
       <p>En Android booking-app til et gaming cafe med visuel pladsplan, real-time opdatering fra Firebase og et admin-panel med statistik og login.</p>
       <div class="projekt-actions">
-        <button class="btn-primary" onclick="showProjekt(2)">📋 Se dokumentation</button>
+        <button class="btn-primary" onclick="showProjekt(2)"> Se dokumentation</button>
       </div>
     </div>
   </section>
@@ -235,11 +235,11 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
   </div>
   <section class="content-section"><p id="pd-beskrivelse" style="font-size:1.05rem;line-height:1.8;"></p></section>
   <section class="content-section" id="pd-log-section">
-    <h2>📅 Ugentlig læringslog</h2>
+    <h2> Ugentlig læringslog</h2>
     <div class="laeringslog-timeline" id="pd-log"></div>
   </section>
   <section class="content-section" id="pd-beslutning-section">
-    <h2>🎯 Design beslutninger</h2>
+    <h2> Design beslutninger</h2>
     <div class="beslutning-grid" id="pd-beslutninger"></div>
   </section>
   <section class="content-section" id="pd-udfordring-section">
@@ -395,7 +395,7 @@ const blogPosts = {
 
 const projekter = {
   1: {
-    titel: "🧟 First-Person Zombie Survival Spil",
+    titel: "First-Person Zombie Survival Spil",
     teknologi: "Unity 6, C#, Visual Studio 2022, ProBuilder, NavMesh AI",
     beskrivelse: "Et first-person zombie survival spil bygget i Unity 6 over 6 uger. Spillet har AI-styrede zombier, rundebaseret sværhedsgrad, et raycasting-våbensystem, points-system og et fuldt HUD.",
     log: [
@@ -428,7 +428,7 @@ const projekter = {
     ]
   },
   2: {
-    titel: "🎮 Global Gaming – Booking App",
+    titel: "Global Gaming – Booking App",
     teknologi: "Flutter, Dart, Firebase, Cloud Firestore, Firebase Auth",
     beskrivelse: "En Android booking-app til et gaming cafe, hvor brugere kan reservere PC-stationer på specifikke datoer og tidspunkter. Inkluderer visuel pladsplan, real-time opdatering og et admin-panel med statistik og login.",
     log: [
@@ -492,18 +492,18 @@ function showProjekt(id) {
       <div class="uge-nummer">Uge ${u.uge}</div>
       <div class="uge-indhold">
         <h3>${u.titel}</h3>
-        <span class="sektion-label">📖 Hvad lærte jeg</span>
+        <span class="sektion-label"> Hvad lærte jeg</span>
         <p>${u.laerte}</p>
-        ${u.byggede ? `<span class="sektion-label">🔨 Hvad jeg byggede</span><ul class="uge-liste">${u.byggede.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
-        ${u.udfordring ? `<span class="sektion-label">🐛 Udfordring løst</span><div class="udfordring-boks"><p>${u.udfordring}</p></div>` : ''}
-        ${u.kilder ? `<span class="sektion-label">🔗 Kilder</span><ul class="kilde-liste-lille">${u.kilder.map(k => `<li><a href="${k}" target="_blank">${k}</a></li>`).join('')}</ul>` : ''}
+        ${u.byggede ? `<span class="sektion-label"> Hvad jeg byggede</span><ul class="uge-liste">${u.byggede.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+        ${u.udfordring ? `<span class="sektion-label"> Udfordring løst</span><div class="udfordring-boks"><p>${u.udfordring}</p></div>` : ''}
+        ${u.kilder ? `<span class="sektion-label"> Kilder</span><ul class="kilde-liste-lille">${u.kilder.map(k => `<li><a href="${k}" target="_blank">${k}</a></li>`).join('')}</ul>` : ''}
       </div>
     </div>`).join('');
 
   // Beslutninger
   document.getElementById('pd-beslutninger').innerHTML = p.beslutninger.map(b => `
     <div class="beslutning-kort">
-      <div class="beslutning-valg">✅ ${b.valg}</div>
+      <div class="beslutning-valg"> ${b.valg}</div>
       <div class="beslutning-vs">i stedet for <span>${b.alternativ}</span></div>
       <p>${b.begrundelse}</p>
     </div>`).join('');
@@ -511,8 +511,8 @@ function showProjekt(id) {
   // Udfordringer
   document.getElementById('pd-udfordringer').innerHTML = p.udfordringer.map(u => `
     <div class="udfordring-kort">
-      <div class="problem">🔴 Problem: ${u.problem}</div>
-      <div class="losning">🟢 Løsning: ${u.losning}</div>
+      <div class="problem"> Problem: ${u.problem}</div>
+      <div class="losning"> Løsning: ${u.losning}</div>
     </div>`).join('');
 
   // Kilder
