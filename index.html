@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yasin Yavuz – Studieportfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #767676;
+  --link: #2563a8;
+  --border: #e8e8e8;
+  --accent: #2a9d5c;
+  --tag-bg: #f0f4f8;
+  --card-bg: #fafafa;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --radius: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; font-weight: 300; }
+
+.site-header { border-bottom: 1px solid var(--border); padding: 0 2rem; position: sticky; top: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); z-index: 100; }
+.header-inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; padding: 1rem 0 0.6rem; gap: 0.5rem; }
+.site-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--text); text-decoration: none; }
+
+.page { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+/* ─── CV ─── */
+.cv-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 0; min-height: 600px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.cv-sidebar { background: #2c2c2c; color: #ffffff; padding: 2rem 1.4rem; }
+.cv-photo-placeholder { width: 90px; height: 90px; border-radius: 50%; background: #555; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1.4rem; color: #ccc; margin: 0 auto 1.5rem; border: 3px solid #555; }
+.cv-contact-section { margin-bottom: 1.6rem; }
+.cv-contact-section h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 0.6rem; padding-bottom: 0.3rem; border-bottom: 1px solid #444; }
+.cv-contact-section p { font-size: 0.82rem; color: #ccc; padding: 0.15rem 0; }
+.cv-skill-list { list-style: none; padding: 0; }
+.cv-skill-list li { font-size: 0.82rem; color: #ccc; padding: 0.15rem 0; }
+.cv-skill-list li::before { content: "•"; color: #888; margin-right: 0.5rem; }
+.cv-main { padding: 2rem 2rem; background: white; }
+.cv-name-block { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #2c2c2c; }
+.cv-name-block h2 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; letter-spacing: 0.05em; color: #1a1a1a; }
+.cv-subtitle { font-size: 0.82rem; letter-spacing: 0.15em; color: #767676; font-weight: 500; margin-top: 0.2rem; }
+.cv-about { margin-bottom: 1.8rem; }
+.cv-about h3, .cv-section h3 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; color: #2c2c2c; margin-bottom: 0.8rem; padding-bottom: 0.3rem; border-bottom: 1.5px solid #2c2c2c; }
+.cv-about p { font-size: 0.88rem; line-height: 1.6; color: #333; }
+.cv-section { margin-bottom: 1.8rem; }
+.cv-job { margin-bottom: 1.2rem; }
+.cv-job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem; }
+.cv-job-company { font-weight: 600; font-size: 0.92rem; color: #1a1a1a; }
+.cv-job-title { font-size: 0.85rem; color: #555; font-style: italic; }
+.cv-job-date { font-size: 0.82rem; color: #767676; white-space: nowrap; margin-left: 1rem; }
+.cv-job-list { list-style: none; padding: 0; margin-top: 0.3rem; }
+.cv-job-list li { font-size: 0.84rem; color: #444; padding: 0.1rem 0; line-height: 1.5; }
+.cv-job-list li::before { content: "•"; color: #999; margin-right: 0.5rem; }
+.cv-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 60%;
+  border: 3px solid #555;
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+@media (max-width: 600px) {
+  .page { padding: 2rem 1.2rem 3rem; }
+  .cv-wrap { grid-template-columns: 1fr; }
+  .cv-sidebar { padding: 1.5rem 1.2rem; }
+}
+
+.site-footer { border-top: 1px solid var(--border); padding: 2.5rem 2rem; margin-top: 3rem; }
+.footer-inner { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.site-footer h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+.site-footer p { color: var(--text-muted); font-size: 0.88rem; }
+@media (max-width: 600px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <span class="site-title">Yasin Yavuz – Studieportfolio</span>
+  </div>
+</header>
+
+<!-- CV -->
+<div class="page" id="page-cv">
+  <div class="cv-wrap">
+
+    <div class="cv-sidebar">
+      <img src="foto.jpg" alt="Yasin Yavuz" class="cv-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="cv-photo-fallback" style="display:none">YY</div>
+      <div class="cv-contact-section">
+        <h4>Kontakt</h4>
+        <p>+45 42456192</p>
+        <p>yavuzyasin119@gmail.com</p>
+        <p>Danas have, Slagelse</p>
+      </div>
+      <div class="cv-contact-section">
+        <h4>Skills</h4>
+        <ul class="cv-skill-list">
+          <li>C#</li>
+          <li>ASP.NET Core MVC</li>
+          <li>HTML5, CSS3 & JavaScript</li>
+          <li>SQL & Databasedesign</li>
+          <li>Firebase</li>
+          <li>Flutter, Dart</li>
+          <li>Unity Game Development</li>
+          <li>Git & GitHub</li>
+        </ul>
+      </div>
+      <div class="cv-contact-section">
+        <h4>Sprog</h4>
+        <ul class="cv-skill-list">
+          <li>Dansk (Flydende)</li>
+          <li>Engelsk (Flydende)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-main">
+      <div class="cv-name-block">
+        <h2>YASIN YAVUZ</h2>
+        <p class="cv-subtitle">DATAMATIKER STUDERENDE</p>
+      </div>
+
+      <div class="cv-about">
+        <h3>OM MIG</h3>
+        <p>Datamatkerstuderende på UCL med stærke IT-kompetencer og en struktureret tilgang til problemløsning. Erfaring fra vagtcentral, lager og servicefag, hvor ansvarlighed, overblik og effektiv kommunikation har været centrale kompetencer. Arbejder systematisk, lærer hurtigt nye systemer og trives i miljøer, hvor præcision, samarbejde og kundeservice er vigtige. Søger muligheder for at udvikle mine tekniske færdigheder og omsætte dem i praksis gennem IT-relaterede arbejdsopgaver.</p>
+      </div>
+
+      <div class="cv-section">
+        <h3>ARBEJDSERFARING</h3>
+
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">Belfor</div>
+              <div class="cv-job-title">Vagtcentral medarbejder, deltid</div>
+            </div>
+            <div class="cv-job-date">2026 –</div>
+          </div>
+          <ul class="cv-job-list">
+            <li>Håndterer akut skadeservice ved brand-, vand- og fugtskader, herunder afdækning, affugtning og dokumentation af skadeforløb.</li>
+            <li>Betjener vagtcentralen som bagvagt for boligforeningers beboere, modtager opkald og fejlsøger tekniske og praktiske problemer i samarbejde med kunden</li>
+            <li>Vurderer situationens alvor og udarbejder strukturerede skaderapporter til boligforeninger ved akutte hændelser.</li>
+            <li>Koordinerer udsendelse af relevante håndværkere, herunder VVS, elektrikere og andre fagfolk, afhængigt af problemets karakter.</li>
+          </ul>
+        </div>
+
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">Cater Grønt</div>
+              <div class="cv-job-title">Lagermedarbejder, deltid</div>
+            </div>
+            <div class="cv-job-date">2023 – 2026</div>
+          </div>
+          <ul class="cv-job-list">
+            <li>Plukkede og håndterede frugt og grønt med fokus på kvalitetssikring og korrekt sortering af varer.</li>
+            <li>Sikrede effektiv og præcis ordrehåndtering i et tempofyldt lagermiljø.</li>
+          </ul>
+        </div>
+
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">Slagelse Sygehus</div>
+              <div class="cv-job-title">Service assistent, fuldtid</div>
+            </div>
+            <div class="cv-job-date">2022</div>
+          </div>
+          <ul class="cv-job-list">
+            <li>Udførte serviceopgaver og sikrede et rent og trygt miljø for patienter og personale.</li>
+            <li>Håndterede praktiske opgaver med fokus på kvalitet, hygiejne og service.</li>
+            <li>Arbejdede selvstændigt og ansvarligt i en travl og omskiftelig hverdag.</li>
+          </ul>
+        </div>
+
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">Rema 1000</div>
+              <div class="cv-job-title">Ungarbejder, deltid</div>
+            </div>
+            <div class="cv-job-date">2020 – 2021</div>
+          </div>
+          <ul class="cv-job-list">
+            <li>Hjalp kunder og håndterede daglige opgaver.</li>
+            <li>Udviklede stærke kommunikations- og servicekompetencer.</li>
+            <li>Arbejdede selvstændigt og struktureret i et travlt arbejdsmiljø.</li>
+          </ul>
+        </div>
+
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">Kirppu</div>
+              <div class="cv-job-title">Ungarbejder, deltid</div>
+            </div>
+            <div class="cv-job-date">2019 – 2020</div>
+          </div>
+          <ul class="cv-job-list">
+            <li>Assisterede med butikkens daglige drift og anvendte digitale systemer til registrering og administration.</li>
+            <li>Bidrog til effektiv kundeservice og problemløsning.</li>
+            <li>Opbyggede erfaring med ansvar, samarbejde og organisatoriske arbejdsopgaver.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <h3>UDDANNELSE</h3>
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">Datamatiker uddannelsen</div>
+              <div class="cv-job-title">UCL Odense</div>
+            </div>
+            <div class="cv-job-date">2024 – 2027</div>
+          </div>
+        </div>
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">Studentereksamen STX</div>
+              <div class="cv-job-title">Slagelse Gymnasium</div>
+            </div>
+            <div class="cv-job-date">2023</div>
+          </div>
+        </div>
+        <div class="cv-job">
+          <div class="cv-job-header">
+            <div>
+              <div class="cv-job-company">9 Klasse afgangseksamen</div>
+              <div class="cv-job-title">Marievangsskolen</div>
+            </div>
+            <div class="cv-job-date">2020</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><h3>Yasin Yavuz – Studieportfolio</h3><p>4. semester Datamatiker – UCL Erhvervsakademi</p></div>
+    <div><p>Studieportfolio med projekter, noter og ugentlig blog.</p></div>
+  </div>
+</footer>
+
+</body>
+</html>
